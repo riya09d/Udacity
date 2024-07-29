@@ -133,7 +133,7 @@ Ensure accurate scoring of models by running a batch script.
 Here’s a README file summarizing the project:
 
 ```markdown
-# Dog Breed Classification Project
+# Image Classifier to Identify Dog Breeds
 
 ## Overview
 
