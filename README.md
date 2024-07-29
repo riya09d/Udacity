@@ -1,5 +1,5 @@
-## UDACITY - NANODEGREE PROJECT
-# Use a Pre-trained Image Classifier to Identify Dog Breeds
+# UDACITY - NANODEGREE PROJECT
+## Use a Pre-trained Image Classifier to Identify Dog Breeds
 
 To address the requirements for your project on identifying dog breeds using a pre-trained image classifier, you’ll need to ensure that several criteria are met. Below is a structured approach to fulfill each requirement, including code examples and explanations.
 
