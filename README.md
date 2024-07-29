@@ -1,201 +1,50 @@
-# UDACITY - NANODEGREE PROJECT
-# Use a Pre-trained Image Classifier to Identify Dog Breeds
-### Project Overview
+### Udacity-Use-a-Pre-trained-Image-Classifier-to-Identify-Dog-Breeds
 
-**Objective**: Use a pre-trained image classifier to identify dog breeds and time the code execution. Handle command-line arguments for input directories, model architectures, and dog breed files.
-
-### 1. Timing Code Execution
-
-To measure the time taken by your code, use Python's `time` module.
-
-**Implementation**:
-
-```python
-import time
-
-def main():
-    start_time = time.time()
-    
-    # Main logic here
-    classify_images(images_dir, results_dic, model)
-    
-    end_time = time.time()
-    elapsed_time = end_time - start_time
-    print(f"Elapsed time: {elapsed_time:.2f} seconds")
-```
-
-### 2. Command-Line Arguments
-
-You need to handle command-line arguments to specify the directory, model architecture, and dog breed file. Use the `argparse` module for this.
-
-**Implementation**:
-
-```python
-import argparse
-
-def parse_args():
-    parser = argparse.ArgumentParser(description='Image classification arguments.')
-    parser.add_argument('--dir', type=str, default='pet_images/', help='Directory of images.')
-    parser.add_argument('--arch', type=str, default='vgg', help='Pre-trained model architecture.')
-    parser.add_argument('--dogfile', type=str, default='dognames.txt', help='File containing dog breed names.')
-    return parser.parse_args()
-
-if __name__ == '__main__':
-    args = parse_args()
-    images_dir = args.dir
-    model = args.arch
-    dogfile = args.dogfile
-    # Continue with the rest of your code
-```
-
-### 3. Pet Image Labels
-
-Ensure the dictionary format for pet image labels is correct and contains 40 key-value pairs.
-
-**Example**:
-
-```python
-def get_pet_labels(image_dir):
-    # Implement logic to retrieve pet labels
-    results_dic = {
-        'Poodle_07956.jpg': ['poodle'],
-        'fox_squirrel_01.jpg': ['fox squirrel'],
-        # Ensure to have 40 pairs
-    }
-    return results_dic
-```
-
-### 4. Classifying Images
-
-Make sure to append the image directory to each filename before calling the classifier function. Also, handle output formatting correctly.
-
-**Implementation**:
-
-```python
-def classify_images(images_dir, results_dic, model):
-    for key in results_dic:
-        image_path = images_dir + key
-        classifier_label = classifier(image_path, model)
-        classifier_label = classifier_label.lower().strip()
-        
-        if results_dic[key][0] in classifier_label:
-            results_dic[key].extend([classifier_label, 1])
-        else:
-            results_dic[key].extend([classifier_label, 0])
-```
-
-### 5. Classifying Labels as Dogs
-
-Verify that classifier labels are correctly classified as "dogs" or "not dogs."
-
-**Implementation**:
-
-```python
-def classify_dogs(results_dic):
-    for key, value in results_dic.items():
-        pet_label, classifier_label, match_status = value
-        if 'dog' in pet_label:
-            if 'dog' in classifier_label:
-                print(f"{key}: Correctly identified as dog")
-            else:
-                print(f"{key}: Incorrectly identified as not a dog")
-        else:
-            if 'dog' not in classifier_label:
-                print(f"{key}: Correctly identified as not a dog")
-            else:
-                print(f"{key}: Incorrectly identified as a dog")
-```
-
-### 6. Results
-
-Ensure accurate scoring of models by running a batch script.
-
-**Implementation**:
-
-1. Write a shell script `run_models_batch.sh`:
-
-    ```bash
-    #!/bin/bash
-    python main.py --dir pet_images/ --arch vgg --dogfile dognames.txt
-    python main.py --dir pet_images/ --arch resnet --dogfile dognames.txt
-    python main.py --dir pet_images/ --arch alexnet --dogfile dognames.txt
-    ```
-
-2. Execute the script and verify the output.
-
-    ```bash
-    chmod +x run_models_batch.sh
-    ./run_models_batch.sh
-    ```
-
-### README
-
-Here’s a README file summarizing the project:
-
-```markdown
-# Image Classifier to Identify Dog Breeds
-
+![Udacity](https://github.com/niloydebbarma-code/Udacity-Use-a-Pre-trained-Image-Classifier-to-Identify-Dog-Breeds/blob/d63053c4b4086c3f51a36e4e920d3a016ec51421/Picture%20for%20readme%20file/Screenshot_20240620-200244.png)
 ## Overview
 
-This project utilizes pre-trained CNN models to classify images of dogs into breeds. It includes timing of code execution, command-line argument handling, and accurate classification of dog breeds.
+![Alt Text](https://github.com/niloydebbarma-code/Udacity-Use-a-Pre-trained-Image-Classifier-to-Identify-Dog-Breeds/blob/d5288d5b8d40aaaaeb9947b412bce4c49db1f1b2/Picture%20for%20readme%20file/images%20(1)_072208%20(1).jpeg)
+This project utilizes a pre-trained image classifier to identify dog breeds. It is part of the Udacity Nanodegree program. The classifier can take an image of a dog and predict its breed or determine if a human in the image resembles a particular dog breed.
 
-## Features
+## Project Structure
 
-- **Image Classification**: Classify images using models like VGG, ResNet, and AlexNet.
-- **Timing**: Measure and display the time taken for classification.
-- **Command-Line Arguments**: Customize image directory, model architecture, and dog breed file.
-- **Results Formatting**: Proper formatting and classification of results.
+![Alt Text](https://github.com/niloydebbarma-code/Udacity-Use-a-Pre-trained-Image-Classifier-to-Identify-Dog-Breeds/blob/d5288d5b8d40aaaaeb9947b412bce4c49db1f1b2/Picture%20for%20readme%20file/images_072212.jpeg)
+The repository contains the following folders and files:
 
-## Prerequisites
+- **Folders**:
+  - `Picture for readme file`: Contains images for the README file.
+  - `__pycache__`: Contains compiled Python files.
+  - `pet_images`: Contains images of dogs for the project.
+  - `uploaded_images`: Contains images uploaded for classification.
 
-- Python 3.x
-- Required Python packages listed in `requirements.txt`
+- **Files**:
+  - `LICENSE`: The MIT license file.
+  - `README.md`: This readme file.
+  - `adjust_results4_isadog.py`: Script to adjust results for is-a-dog determination.
+  - `adjust_results4_isadog_hints.py`: Hints for `adjust_results4_isadog.py`.
+  - `calculates_results_stats.py`: Script to calculate statistics of results.
+  - `calculates_results_stats_hints.py`: Hints for `calculates_results_stats.py`.
 
 ## Installation
 
-1. **Clone the Repository**
+1. Clone the repository:
 
-   ```bash
-   git clone https://github.com/your-username/image-classification-project.git
-   cd image-classification-project
-   ```
-
-2. **Install Required Packages**
-
-   ```bash
-   python -m venv venv
-   source venv/bin/activate  # On Windows use `venv\Scripts\activate`
-   pip install -r requirements.txt
-   ```
-
-## Usage
-
-1. **Run the Project**
-
-   ```bash
-   python main.py --dir pet_images/ --arch vgg --dogfile dognames.txt
-   ```
-
-2. **Batch Processing**
-
-   Execute the batch script to run multiple models:
-
-   ```bash
-   chmod +x run_models_batch.sh
-   ./run_models_batch.sh
-   ```
-
-## Results
-
-- **Timing**: Check the elapsed time for each model run.
-- **Classification**: Review the output for accuracy in identifying dog breeds.
-
-## Contributing
-
-Contributions are welcome. Please fork the repository and submit pull requests with your enhancements or fixes.
+    ```bash
+    git clone https://github.com/niloydebbarma-code/Udacity-Use-a-Pre-trained-Image-Classifier-to-Identify-Dog-Breeds.git
+    cd Udacity-Use-a-Pre-trained-Image-Classifier-to-Identify-Dog-Breeds
+    ```
 
 ## License
 
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
-```
-.
+This project is licensed under the MIT License. For more details, see the [LICENSE](LICENSE) file.
+
+## Acknowledgments
+
+- Udacity for providing the project guidelines and resources.
+- The developers of the libraries and tools used in this project.
+
+## Contact
+
+For any questions or comments, please contact Niloy Deb Barma at [LinkedIn](https://www.linkedin.com/in/niloydebbarmacpscr).
+
+![Alt Text](https://github.com/niloydebbarma-code/Udacity-Use-a-Pre-trained-Image-Classifier-to-Identify-Dog-Breeds/blob/b45080c300477fffa734c0079b6a90575f1cb660/Picture%20for%20readme%20file/p1-completed-aws-winter.png)
